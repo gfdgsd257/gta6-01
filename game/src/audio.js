@@ -79,6 +79,10 @@ export function createAudio() {
       tone(660, 0.09, 'sine', 0.25);
       setTimeout(() => tone(990, 0.12, 'sine', 0.25), 70);
     },
+    // A short UI blip for menu confirms (start, retry, next job).
+    click() {
+      tone(520, 0.06, 'triangle', 0.2, 760);
+    },
     coin() {
       tone(880, 0.07, 'triangle', 0.22, 1320);
     },

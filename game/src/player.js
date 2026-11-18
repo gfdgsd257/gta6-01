@@ -2,7 +2,7 @@
 // stealing a car with E and stepping out of one again. Driving itself
 // lives in vehicles.js; this file owns the person.
 import { PLAYER_WALK_SPEED, PLAYER_RUN_SPEED, PLAYER_RADIUS, SEA_Y, WORLD_W, WORLD_H } from './config.js';
-import { collideBuildings } from './world.js';
+import { collideBuildings, onBridge } from './world.js';
 import { nearestCar } from './vehicles.js';
 
 export function updatePlayerOnFoot(state, dt, move, running) {
@@ -19,7 +19,7 @@ export function updatePlayerOnFoot(state, dt, move, running) {
   if (collideBuildings(state.city, p, PLAYER_RADIUS)) {
     // collideBuildings already pushed the player out.
   }
-  if (p.y > SEA_Y + 10 && Math.abs(p.x - 1800) > 75) {
+  if (p.y > SEA_Y + 10 && !onBridge(p.x, p.y)) {
     p.y = SEA_Y + 10;
   }
   p.x = Math.max(30, Math.min(WORLD_W - 30, p.x));

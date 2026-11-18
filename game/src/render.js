@@ -160,6 +160,12 @@ function drawWorld(ctx, state, view) {
     ctx.lineTo(target.x + 10, target.y - 14);
     ctx.closePath();
     ctx.fill();
+    // Distance from the player, so the marker is useful at a glance.
+    const distM = Math.round(Math.hypot(state.player.x - target.x, state.player.y - target.y) / 10) * 10;
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 15px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(`${distM}m`, target.x, target.y - 44);
     ctx.restore();
   }
   // Garage marker between jobs.

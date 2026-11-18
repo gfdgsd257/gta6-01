@@ -17,7 +17,8 @@ export function loadSave() {
 
 export function writeSave(data) {
   try {
-    window.localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+    // A version tag so a future save format can tell old saves apart.
+    window.localStorage.setItem(SAVE_KEY, JSON.stringify({ v: 1, ...data }));
     return true;
   } catch {
     return false;

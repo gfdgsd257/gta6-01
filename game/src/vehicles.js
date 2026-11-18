@@ -2,7 +2,7 @@
 // own driving physics — acceleration, steering that bites harder at
 // speed, braking and a handbrake that lets the tail slide.
 import { CAR_TYPES, CAR_TYPE_KEYS, CAR_LENGTH, CAR_WIDTH, TRAFFIC_COUNT, WORLD_W, WORLD_H, SEA_Y } from './config.js';
-import { onRoad, nearestRoadPoint, roadXs, roadYs, collideBuildings } from './world.js';
+import { onRoad, nearestRoadPoint, roadXs, roadYs, collideBuildings, onBridge } from './world.js';
 
 let nextCarId = 1;
 
@@ -155,7 +155,7 @@ export function drivePlayerCar(state, dt, drive, steer, handbrake) {
   car.y += Math.sin(car.angle) * car.speed * dt;
 
   // World bounds: the sea swallows a car that leaves the bridge.
-  if (car.y > SEA_Y + 40 && Math.abs(car.x - 1800) > 75) {
+  if (car.y > SEA_Y + 40 && !onBridge(car.x, car.y)) {
     car.x = prevX;
     car.y = prevY;
     car.speed *= -0.3;

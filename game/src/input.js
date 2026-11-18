@@ -1,6 +1,11 @@
 // Keyboard and mouse input: one place that owns every key the game
 // listens to, so the rest of the game only asks "is this held?" or
 // "was this just pressed?".
+//
+// Note that Space does double duty on purpose: on the title and
+// game-over screens it confirms (starts / retries), while driving it
+// is the handbrake. The screens are checked before driving input, so
+// the two never fire together.
 export const ACTION_CONFIRM = 1;
 export const ACTION_PAUSE = 2;
 export const ACTION_ENTER_CAR = 4;

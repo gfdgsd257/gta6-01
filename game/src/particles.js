@@ -10,6 +10,10 @@ export function createParticles() {
 
   return {
     list,
+    // Drop every live particle at once (used when the game restarts).
+    clear() {
+      list.length = 0;
+    },
     smoke(x, y, count) {
       for (let i = 0; i < count; i++) {
         add({

@@ -18,6 +18,11 @@ export function roadYs() {
   return ys;
 }
 
+// True when the point is on the bridge that crosses the sea.
+export function onBridge(x, y) {
+  return y >= SEA_Y - 60 && Math.abs(x - BRIDGE_X) < BRIDGE_W / 2;
+}
+
 // True when the point sits on a road (or on the bridge over the sea).
 export function onRoad(x, y) {
   if (y >= SEA_Y) return Math.abs(x - BRIDGE_X) < BRIDGE_W / 2;

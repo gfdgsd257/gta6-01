@@ -95,6 +95,16 @@ export function updatePeds(state, dt) {
   }
 }
 
+// Scare every pedestrian near a point (a gunshot, a crash): they run.
+export function scarePedsNear(state, x, y, radius) {
+  for (const ped of state.peds) {
+    if (Math.hypot(ped.x - x, ped.y - y) < radius) {
+      ped.flee = 2.5;
+      ped.scared = true;
+    }
+  }
+}
+
 // A pedestrian hit by a car: they tumble, the player earns a star.
 export function hitPedByCar(state, ped) {
   ped.flee = 3;

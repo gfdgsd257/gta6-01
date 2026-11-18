@@ -58,6 +58,15 @@ python3 -m http.server --directory game 8080
   with a mute toggle, title / pause / game-over screens, and progress
   saved to localStorage.
 
+## Screenshots
+
+Real renders of the game running in a browser (1280×720):
+
+- `screenshots/01-driving.jpg` — driving a sports car through Solmar Bay
+- `screenshots/02-street.jpg` — on foot at the market-square intersection
+- `screenshots/03-chase.jpg` — a 3-star police chase
+- `screenshots/04-mission.jpg` — the first job, with its marker and dialogue
+
 ## Project layout
 
 - `main.ts` — the entry program: copies `game/` + `screenshots/` to

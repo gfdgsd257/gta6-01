@@ -53,6 +53,7 @@ resize();
 function startGame() {
   screen = SCREEN_PLAY;
   state.audio.unlock();
+  state.audio.click();
   announce('Playing. Go to the garage to start your first job.');
 }
 

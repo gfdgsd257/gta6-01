@@ -22,5 +22,15 @@ export function createRandom(seed) {
     chance(p) {
       return this.next() < p;
     },
+    // A Fisher-Yates shuffle that draws from this generator, so a
+    // shuffled deck is reproducible from the same seed.
+    shuffle(list) {
+      const out = list.slice();
+      for (let i = out.length - 1; i > 0; i--) {
+        const j = Math.floor(this.next() * (i + 1));
+        [out[i], out[j]] = [out[j], out[i]];
+      }
+      return out;
+    },
   };
 }

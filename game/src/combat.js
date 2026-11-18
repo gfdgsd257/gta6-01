@@ -3,6 +3,7 @@
 // and ammo crates respawn around the city.
 import { PLAYER_RADIUS } from './config.js';
 import { onThugDown } from './missions.js';
+import { scarePedsNear } from './pedestrians.js';
 
 export function createCombat() {
   return {
@@ -85,6 +86,8 @@ export function shoot(state, screenX, screenY) {
   const my = state.player.y + Math.sin(angle) * 22;
   c.bullets.push({ x: mx, y: my, vx: Math.cos(angle) * 900, vy: Math.sin(angle) * 900, life: 0.6, fromPlayer: true });
   state.particles.flash(mx, my);
+  // A gunshot sends nearby pedestrians running.
+  scarePedsNear(state, state.player.x, state.player.y, 260);
 }
 
 export function killThug(state, thug) {

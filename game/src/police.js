@@ -24,7 +24,8 @@ export function updatePolice(state, dt) {
   const wanted = state.wanted;
 
   if (wanted === 0) {
-    // The heat is off: cruisers drift away and despawn.
+    // The heat is off: cruisers drift away, and one that has gone far
+    // enough rejoins ordinary traffic instead of vanishing mid-street.
     for (const car of police.cars) {
       car.speed = Math.max(0, car.speed - 60 * dt);
       car.x += Math.cos(car.angle) * car.speed * dt;
@@ -32,7 +33,13 @@ export function updatePolice(state, dt) {
     }
     police.cars = police.cars.filter((c) => {
       const d = Math.hypot(c.x - state.player.x, c.y - state.player.y);
-      return d < 1400;
+      if (d >= 1400) {
+        c.police = false;
+        c.traffic = true;
+        c.cruise = 90 + Math.random() * 70;
+        return false;
+      }
+      return true;
     });
     state.audio.siren(false);
     return;
